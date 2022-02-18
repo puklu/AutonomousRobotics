@@ -1,0 +1,2 @@
+aro_scan
+-DCATKIN_DEVEL_PREFIX=/home/vivek/Documents/ROS/AutonomousRobotics/devel -DCMAKE_INSTALL_PREFIX=/home/vivek/Documents/ROS/AutonomousRobotics/install -G Unix Makefiles
