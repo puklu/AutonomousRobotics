@@ -1,0 +1,2 @@
+aro_scan
+-DCATKIN_DEVEL_PREFIX=/home/vivek/Documents/ROS/hw01/devel -DCMAKE_INSTALL_PREFIX=/home/vivek/Documents/ROS/hw01/install -G Unix Makefiles
