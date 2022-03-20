@@ -18,7 +18,7 @@ class Robocop():
 
         # registering listener for "/scan" topic & publisher for "/cmd_vel" topic (using arg "latch=True")
         self.sub = rospy.Subscriber('/scan', LaserScan, self.scan_cb)
-        self.pub_cmd = rospy.Publisher('/cmd_vel', Twist, latch=True)
+        self.pub_cmd = rospy.Publisher('/cmd_vel', Twist, latch=True, queue_size=10)
 
         # waiting till delete light service is up
         rospy.wait_for_service(self.SERVICE_NAME)
