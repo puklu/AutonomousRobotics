@@ -1,0 +1,8 @@
+prefix=/home/vivek/Documents/ROS/hw05/devel/.private/aro_planning
+
+Name: aro_planning
+Description: Description of aro_planning
+Version: 1.2020.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy message_runtime
