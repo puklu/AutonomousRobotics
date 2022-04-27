@@ -1,0 +1,2 @@
+/home/vivek/Documents/ROS/hw06/devel/lib/python3/dist-packages/voxel_map.so
+/home/vivek/Documents/ROS/hw06/devel/share/voxel_map/package.xml

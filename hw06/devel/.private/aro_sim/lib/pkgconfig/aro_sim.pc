@@ -1,0 +1,8 @@
+prefix=/home/vivek/Documents/ROS/hw06/devel/.private/aro_sim
+
+Name: aro_sim
+Description: Description of aro_sim
+Version: 2022.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: joystick_drivers teleop_twist_joy turtlebot3 turtlebot3_simulations

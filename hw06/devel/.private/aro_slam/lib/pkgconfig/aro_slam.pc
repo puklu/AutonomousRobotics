@@ -1,0 +1,8 @@
+prefix=/home/vivek/Documents/ROS/hw06/devel/.private/aro_slam
+
+Name: aro_slam
+Description: Description of aro_slam
+Version: 2022.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs message_runtime nav_msgs ros_numpy rospy scan_to_point_cloud sensor_msgs tf2_ros voxel_map

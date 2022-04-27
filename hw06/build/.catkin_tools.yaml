@@ -1,0 +1,6 @@
+devel_space: /home/vivek/Documents/ROS/hw06/devel
+install: false
+install_space: /home/vivek/Documents/ROS/hw06/install
+profile: default
+source_space: /home/vivek/Documents/ROS/hw06/src
+workspace: /home/vivek/Documents/ROS/hw06

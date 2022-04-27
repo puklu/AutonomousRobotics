@@ -1,0 +1,1 @@
+/home/vivek/Documents/ROS/hw06/devel/.private/ros_numpy/share/ros_numpy/cmake/ros_numpyConfig-version.cmake

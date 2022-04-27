@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/vivek/Documents/ROS/hw06/devel/.private/scan_to_point_cloud/setup.sh

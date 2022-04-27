@@ -1,0 +1,7 @@
+set(aro_frontier_SETUP_PY_SETUP_MODULE "distutils.core")
+set(aro_frontier_SETUP_PY_VERSION "1.2020.0")
+set(aro_frontier_SETUP_PY_SCRIPTS "")
+set(aro_frontier_SETUP_PY_PACKAGES "aro_frontier")
+set(aro_frontier_SETUP_PY_PACKAGE_DIRS "src/aro_frontier")
+set(aro_frontier_SETUP_PY_MODULES "")
+set(aro_frontier_SETUP_PY_MODULE_DIRS "")

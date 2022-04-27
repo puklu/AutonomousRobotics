@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+"""
+ROS node converting odometry messages to TF transforms.
+"""
+from __future__ import absolute_import, division, print_function
+import rospy
+from geometry_msgs.msg import Transform, TransformStamped, Vector3
+from nav_msgs.msg import Odometry
+from tf2_msgs.msg import TFMessage
+
+
+def pose_to_transform(pose):
+    tf = Transform(Vector3(pose.position.x, pose.position.y, pose.position.z), pose.orientation)
+    return tf
+
+
+class OdometryToTransform(object):
+    def __init__(self):
+        self.parent_frame = rospy.get_param('~parent_frame', None)
+        self.child_frame = rospy.get_param('~child_frame', None)
+        self.tf_pub = rospy.Publisher('/tf', TFMessage, queue_size=5)
+        self.odom_sub = rospy.Subscriber('odom', Odometry, self.on_odom, queue_size=5)
+
+    def on_odom(self, msg):
+        tf = TransformStamped(msg.header, msg.child_frame_id, pose_to_transform(msg.pose.pose))
+        if self.parent_frame:
+            tf.header.frame_id = self.parent_frame
+        if self.child_frame:
+            tf.child_frame_id = self.child_frame
+        self.tf_pub.publish(TFMessage([tf]))
+
+
+def main():
+    rospy.init_node('odom_to_tf')
+    node = OdometryToTransform()
+    try:
+        rospy.spin()
+    except rospy.ROSInterruptException as ex:
+        pass
+
+
+if __name__ == '__main__':
+    main()
