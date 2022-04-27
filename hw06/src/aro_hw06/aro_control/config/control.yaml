@@ -1,6 +1,0 @@
-control_freq: 10.0 # (Hz)
-goal_reached_dist: 0.2 # (m)
-max_path_dist: 3.5 # (m)
-look_ahead_dist: 0.3 # (m)
-max_velocity: 0.8 # (m/s)
-max_angular_rate: 0.6 # (rad/s)

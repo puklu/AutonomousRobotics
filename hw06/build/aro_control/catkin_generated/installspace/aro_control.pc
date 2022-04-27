@@ -1,8 +1,0 @@
-prefix=/home/vivek/Documents/ROS/hw06/install
-
-Name: aro_control
-Description: Description of aro_control
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: rospy message_runtime

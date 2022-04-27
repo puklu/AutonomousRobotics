@@ -1,1 +1,0 @@
-/home/vivek/Documents/ROS/hw06/devel/.private/aro_msgs/share/roseus/ros/aro_msgs/manifest.l
