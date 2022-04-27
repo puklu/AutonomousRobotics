@@ -1,7 +1,0 @@
-set(aro_slam_SETUP_PY_SETUP_MODULE "distutils.core")
-set(aro_slam_SETUP_PY_VERSION "2022.0.0")
-set(aro_slam_SETUP_PY_SCRIPTS "")
-set(aro_slam_SETUP_PY_PACKAGES "aro_slam")
-set(aro_slam_SETUP_PY_PACKAGE_DIRS "src/aro_slam")
-set(aro_slam_SETUP_PY_MODULES "")
-set(aro_slam_SETUP_PY_MODULE_DIRS "")
