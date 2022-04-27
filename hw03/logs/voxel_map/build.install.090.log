@@ -1,0 +1,7 @@
+[ 37%] Built target mat_hash_map
+[ 75%] Built target mat_voxel_map
+[100%] Built target py_voxel_map
+[36mInstall the project...[0m
+-- Install configuration: "Release"
+-- Up-to-date: /home/vivek/Documents/ROS/hw03/devel/lib/python3/dist-packages/voxel_map.so
+-- Up-to-date: /home/vivek/Documents/ROS/hw03/devel/share/voxel_map/package.xml

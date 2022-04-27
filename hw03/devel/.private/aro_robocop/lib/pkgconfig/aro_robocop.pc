@@ -1,0 +1,8 @@
+prefix=/home/vivek/Documents/ROS/hw03/devel/.private/aro_robocop
+
+Name: aro_robocop
+Description: Description of aro_robocop
+Version: 1.2022.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy message_runtime

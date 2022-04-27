@@ -1,0 +1,8 @@
+prefix=/home/vivek/Documents/ROS/hw03/devel/.private/scan_to_point_cloud
+
+Name: scan_to_point_cloud
+Description: Description of scan_to_point_cloud
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lscan_to_point_cloud_plugins
+Requires: laser_geometry nodelet roscpp sensor_msgs tf2_ros
