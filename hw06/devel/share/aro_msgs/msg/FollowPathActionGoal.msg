@@ -1,1 +1,0 @@
-/home/vivek/Documents/ROS/hw06/devel/.private/aro_msgs/share/aro_msgs/msg/FollowPathActionGoal.msg
