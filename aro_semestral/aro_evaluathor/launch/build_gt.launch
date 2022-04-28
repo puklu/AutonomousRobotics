@@ -1,9 +1,0 @@
-<launch>
-    <arg name="world" default="stage_4" doc="{autorace, house, stage_1, stage_2, stage_3, stage_4, world}"/>
-    <arg name="spawn_args" default="default"/>
-
-    <node name="gt_builder" pkg="aro_evaluathor" type="gt_builder.py" output="screen">
-        <param name="map_name" value="$(arg world)"/>
-        <param name="spawn_args" value="$(arg spawn_args)"/>
-    </node>
-</launch>
