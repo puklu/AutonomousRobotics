@@ -1,2 +1,0 @@
-my_package1
--DCATKIN_DEVEL_PREFIX=/home/vivek/Documents/ROS/learning/devel -DCMAKE_INSTALL_PREFIX=/home/vivek/Documents/ROS/learning/install -G Unix Makefiles

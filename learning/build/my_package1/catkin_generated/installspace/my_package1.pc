@@ -1,8 +1,0 @@
-prefix=/home/vivek/Documents/ROS/learning/install
-
-Name: my_package1
-Description: Description of my_package1
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
