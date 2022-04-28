@@ -1,9 +1,0 @@
-aro_evaluathor
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor/cmake.lock /home/vivek/Documents/ROS/sw01/devel/./cmake.lock
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor/share/aro_evaluathor/cmake/aro_evaluathorConfig.cmake /home/vivek/Documents/ROS/sw01/devel/share/aro_evaluathor/cmake/aro_evaluathorConfig.cmake
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor/share/aro_evaluathor/cmake/aro_evaluathorConfig-version.cmake /home/vivek/Documents/ROS/sw01/devel/share/aro_evaluathor/cmake/aro_evaluathorConfig-version.cmake
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor/lib/aro_evaluathor/gt_builder.py /home/vivek/Documents/ROS/sw01/devel/lib/aro_evaluathor/gt_builder.py
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor/lib/aro_evaluathor/run_eval.py /home/vivek/Documents/ROS/sw01/devel/lib/aro_evaluathor/run_eval.py
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor/lib/aro_evaluathor/cmake.lock /home/vivek/Documents/ROS/sw01/devel/lib/aro_evaluathor/cmake.lock
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor/lib/pkgconfig/aro_evaluathor.pc /home/vivek/Documents/ROS/sw01/devel/lib/pkgconfig/aro_evaluathor.pc
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor/lib/python3/dist-packages/aro_evaluathor/__init__.py /home/vivek/Documents/ROS/sw01/devel/lib/python3/dist-packages/aro_evaluathor/__init__.py

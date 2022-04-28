@@ -1,8 +1,0 @@
-prefix=/home/vivek/Documents/ROS/sw01/devel/.private/aro_msgs
-
-Name: aro_msgs
-Description: Description of aro_msgs
-Version: 0.2022.1
-Cflags: -I/home/vivek/Documents/ROS/sw01/devel/.private/aro_msgs/include
-Libs: -L${prefix}/lib 
-Requires: rospy message_runtime

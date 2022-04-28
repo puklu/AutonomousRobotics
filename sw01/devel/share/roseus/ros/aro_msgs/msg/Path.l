@@ -1,1 +1,0 @@
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_msgs/share/roseus/ros/aro_msgs/msg/Path.l

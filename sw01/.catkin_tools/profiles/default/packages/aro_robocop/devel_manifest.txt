@@ -1,5 +1,0 @@
-aro_robocop
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_robocop/cmake.lock /home/vivek/Documents/ROS/sw01/devel/./cmake.lock
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_robocop/share/aro_robocop/cmake/aro_robocopConfig-version.cmake /home/vivek/Documents/ROS/sw01/devel/share/aro_robocop/cmake/aro_robocopConfig-version.cmake
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_robocop/share/aro_robocop/cmake/aro_robocopConfig.cmake /home/vivek/Documents/ROS/sw01/devel/share/aro_robocop/cmake/aro_robocopConfig.cmake
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_robocop/lib/pkgconfig/aro_robocop.pc /home/vivek/Documents/ROS/sw01/devel/lib/pkgconfig/aro_robocop.pc

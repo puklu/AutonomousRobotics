@@ -1,6 +1,0 @@
-aro_frontier/aro_frontier
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_frontier/cmake.lock /home/vivek/Documents/ROS/sw01/devel/./cmake.lock
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_frontier/share/aro_frontier/cmake/aro_frontierConfig-version.cmake /home/vivek/Documents/ROS/sw01/devel/share/aro_frontier/cmake/aro_frontierConfig-version.cmake
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_frontier/share/aro_frontier/cmake/aro_frontierConfig.cmake /home/vivek/Documents/ROS/sw01/devel/share/aro_frontier/cmake/aro_frontierConfig.cmake
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_frontier/lib/pkgconfig/aro_frontier.pc /home/vivek/Documents/ROS/sw01/devel/lib/pkgconfig/aro_frontier.pc
-/home/vivek/Documents/ROS/sw01/devel/.private/aro_frontier/lib/python3/dist-packages/aro_frontier/__init__.py /home/vivek/Documents/ROS/sw01/devel/lib/python3/dist-packages/aro_frontier/__init__.py

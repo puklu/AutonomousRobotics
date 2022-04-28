@@ -1,8 +1,0 @@
-prefix=/home/vivek/Documents/ROS/sw01/install
-
-Name: aro_frontier
-Description: Description of aro_frontier
-Version: 1.2020.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: rospy message_runtime
