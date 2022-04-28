@@ -1,0 +1,12 @@
+- git:
+    local-name: ros_numpy
+    uri: https://github.com/eric-wieser/ros_numpy.git
+    version: master
+- git:
+    local-name: scan_to_point_cloud
+    uri: https://github.com/ctu-vras/scan_to_point_cloud.git
+    version: main
+- git:
+    local-name: voxel_map
+    uri: https://bitbucket.org/tpetricek/voxel_map.git
+    version: catkin-noetic

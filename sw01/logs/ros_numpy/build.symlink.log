@@ -1,0 +1,4 @@
+Symlinking /home/vivek/Documents/ROS/sw01/devel/share/ros_numpy/cmake/ros_numpyConfig-version.cmake
+Symlinking /home/vivek/Documents/ROS/sw01/devel/share/ros_numpy/cmake/ros_numpyConfig.cmake
+Symlinking /home/vivek/Documents/ROS/sw01/devel/lib/pkgconfig/ros_numpy.pc
+Symlinking /home/vivek/Documents/ROS/sw01/devel/lib/python3/dist-packages/ros_numpy/__init__.py

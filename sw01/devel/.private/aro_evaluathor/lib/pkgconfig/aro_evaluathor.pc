@@ -1,0 +1,8 @@
+prefix=/home/vivek/Documents/ROS/sw01/devel/.private/aro_evaluathor
+
+Name: aro_evaluathor
+Description: Description of aro_evaluathor
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

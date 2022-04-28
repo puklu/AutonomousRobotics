@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target scan_to_point_cloud_plugins[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/scan_to_point_cloud_plugins.dir/src/scan_to_point_cloud/scan_to_point_cloud.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/vivek/Documents/ROS/sw01/devel/.private/scan_to_point_cloud/lib/libscan_to_point_cloud_plugins.so[0m
+[100%] Built target scan_to_point_cloud_plugins

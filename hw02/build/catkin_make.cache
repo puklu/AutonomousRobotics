@@ -1,0 +1,2 @@
+aro_robocop:aro_sim
+-DCATKIN_DEVEL_PREFIX=/home/vivek/Documents/ROS/hw02/devel -DCMAKE_INSTALL_PREFIX=/home/vivek/Documents/ROS/hw02/install -G Unix Makefiles

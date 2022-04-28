@@ -1,0 +1,4 @@
+Symlinking /home/vivek/Documents/ROS/sw01/devel/share/aro_frontier/cmake/aro_frontierConfig-version.cmake
+Symlinking /home/vivek/Documents/ROS/sw01/devel/share/aro_frontier/cmake/aro_frontierConfig.cmake
+Symlinking /home/vivek/Documents/ROS/sw01/devel/lib/pkgconfig/aro_frontier.pc
+Symlinking /home/vivek/Documents/ROS/sw01/devel/lib/python3/dist-packages/aro_frontier/__init__.py

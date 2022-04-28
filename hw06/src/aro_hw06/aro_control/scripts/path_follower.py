@@ -168,11 +168,6 @@ class PathFollower(object):
         self.max_angular_rate = rospy.get_param('~max_angular_rate', 0.3)  # maximum allowed angular rate (rad/s)
         self.look_ahead_dist = rospy.get_param('~look_ahead_dist', 0.3)  # look ahead distance for pure pursuit (m)
 
-        ######################
-        # self.max_velocity = 1.5
-        # self.max_angular_rate = 0.8
-        ################################
-
         self.action_server = actionlib.SimpleActionServer('follow_path', FollowPathAction, execute_cb=self.control,
                                                           auto_start=False)
         self.action_server.register_preempt_callback(self.preempt_control)
@@ -185,10 +180,6 @@ class PathFollower(object):
         self.path_index = 0  # path position index
 
         self.scan_listener = rospy.Subscriber('scan', LaserScan, self.scan_cb)
-        # initial values to be updated by scan callback
-        # self.front_range = 1000
-        # self.left_range = 1000
-        # self.right_range = 1000
         # limit for the front to be recognized as obstacle ahead
         self.front_limit = 0.2
         self.previous_heading_error = 0.0  # heading error in a previous step
@@ -211,13 +202,11 @@ class PathFollower(object):
         self.integrator_value = 0
         self.error_before = 0
         self.started = False  # flag to check if the position is too far
-
         self.previous_path_index = None
 
         rospy.loginfo('Path follower initialized.')
 
-    def lookup_transform(self, target_frame, source_frame, time,
-                         no_wait_frame=None, timeout=rospy.Duration.from_sec(0.0)):
+    def lookup_transform(self, target_frame, source_frame, time, no_wait_frame=None, timeout=rospy.Duration.from_sec(0.0)):
         '''
         Returns transformation between to frames on specified time.
 
@@ -239,9 +228,7 @@ class PathFollower(object):
         tf_s2t.header.frame_id = target_frame
         tf_s2t.header.stamp = time
         tf_s2t.child_frame_id = source_frame
-        tf_s2t.transform = msgify(Transform,
-                                  np.matmul(numpify(tf_n2t.transform),
-                                            numpify(tf_s2n.transform)))
+        tf_s2t.transform = msgify(Transform, np.matmul(numpify(tf_n2t.transform), numpify(tf_s2n.transform)))
         return tf_s2t
 
     def getRobotPose(self, target_frame):
@@ -275,8 +262,6 @@ class PathFollower(object):
         Parameters:
             msg (aro_msgs/FollowPathAction request): msg containing header and required path (array of Pose2D) 
         '''
-        # print("msg.....")
-        # print(msg)
 
         with self.lock:
             if len(msg.poses) > 0:
@@ -291,23 +276,17 @@ class PathFollower(object):
         rospy.loginfo('Path received (%i poses).', len(msg.poses))
 
     def setPathIndex(self, pose):
-        # self.look_ahead_dist = 0.3  #################################################
+        # self.look_ahead_dist = 0.3
 
-        """Set path index indicating path segment lying within lookahed distance."""
+        """Set path index indicating path segment lying within lookahead distance."""
         for k in np.arange(self.path_index, len(self.path)):
             if np.linalg.norm(self.path[k][:2] - pose[:2]) < self.look_ahead_dist:
-                # print("from path index method..path index")
-                # print(self.path_index)
                 continue
             else:
                 if k == self.previous_path_index:
-                    print("from path index method..k if condition")
-                    print(self.previous_path_index)
                     continue
                 else:
                     self.path_index = k
-                    print("from path index method..path index")
-                    print(self.path_index)
                     return
 
         # self.path_index = len(self.path) - 1  # all remaining waypoints are close
@@ -326,113 +305,46 @@ class PathFollower(object):
         # TODO: Find local goal (lookahead point) on current path
 
         goal = None
-        # self.look_ahead_dist = 0.3  #################################################
+        # self.look_ahead_dist = 0.3
         self.setPathIndex(pose)
         # next waypoint
         next_wp = self.path[self.path_index]
-
-        print("path_index")
-        rospy.loginfo(self.path_index)
-        print("path")
-        rospy.loginfo(self.path)
-        print("next_wp")
-        rospy.loginfo(next_wp)
 
         next_wp = next_wp[0:2]
         pose2 = pose[0:2]
         # distance from robot to next waypoint
         distance = np.linalg.norm(next_wp - pose2)
 
-        # print("...distance and lookahead and index..")
-        # rospy.loginfo(distance)
-        # rospy.loginfo(self.look_ahead_dist)
-
         # the goal is within the lookahead distance
-        # if self.path_index == len(self.path) - 1:
-        #     print("....hello from last waypoint....")
-        #     goal = next_wp
-        # first waypoint is beyond the lookahead distance
-        # elif distance > self.look_ahead_dist and self.path_index == 0:
-        #     # print("....hello from distance > lookahead and index 0..")
-        #     goal = pose2 + self.look_ahead_dist * (next_wp - pose2) / np.linalg.norm(next_wp - pose2)
+        if self.path_index == len(self.path) - 1:
+            rospy.loginfo("....hello from last waypoint....")
+            goal = next_wp
 
-        # elif distance < self.look_ahead_dist:
-
-        # if distance >= self.look_ahead_dist:
-        #     this_distance = distance
-        #     this_path_index = self.path_index
-        #     while this_distance >= self.look_ahead_dist and this_path_index > 0:
-        #         this_path_index -= 1
-        #         print("path index")
-        #         rospy.loginfo(this_path_index)
-        #         print("pose")
-        #         rospy.loginfo(pose2)
-        #         point_to_consider = self.path[this_path_index]
-        #
-        #         this_distance = np.linalg.norm(point_to_consider[0:2] - pose2)
-        #
-        #         print("lookahead dostance")
-        #         print(self.look_ahead_dist)
-        #         print("comdition")
-        #         print(this_distance > self.look_ahead_dist)
-        #         print("new distance")
-        #         print(this_distance)
-        #
-        #     point1 = self.path[this_path_index]
-        #     point2 = self.path[this_path_index+1]
-        #     intersections = getCircLineIntersect(point1, point2, pose2, self.look_ahead_dist)
-        #
-        #     print("intersections")
-        #     print(intersections)
-        #
-        #     # next_wp = self.path[self.path_index + 1][0:2]
-        #     self.previous_path_index = self.path_index
-        #     # print("new next_wp")
-        #     # print(next_wp)
-        #     distance_from_goal0 = np.linalg.norm(intersections[0] - next_wp)
-        #     distance_from_goal1 = np.linalg.norm(intersections[1] - next_wp)
-        #
-        #     if distance_from_goal0 > distance_from_goal1:
-        #         goal = intersections[1]
-        #     else:
-        #         goal = intersections[0]
-
-        # else:
-        print("....hello from distance else....")
-        this_distance = distance
-        while this_distance < self.look_ahead_dist:
-            if self.path_index + 1 < len(self.path):
-                self.path_index += 1
-            point_to_consider = self.path[self.path_index]
-            this_distance = np.linalg.norm(point_to_consider[0:2] - pose2)
-
-        point1 = self.path[self.path_index - 1]
-        point2 = self.path[self.path_index]
-        intersections = getCircLineIntersect(point1, point2, pose2, self.look_ahead_dist)
-
-        print("intersections")
-        rospy.loginfo(intersections)
-        ##########################
-        distance_from_goal0 = np.linalg.norm(intersections[0] - next_wp)
-        distance_from_goal1 = np.linalg.norm(intersections[1] - next_wp)
-
-        if distance_from_goal0 > distance_from_goal1:
-            goal = intersections[1]
         else:
-            goal = intersections[0]
-        # print("testing2...")
-        # rospy.loginfo(goal)
-        # elif distance > self.look_ahead_dist:
-        #     point1 = self.path[self.path_index - 1]
-        #     point2 = next_wp
-        #     intersections = getCircLineIntersect(point1[0:2], point2[0:2], pose2[0:2], self.look_ahead_dist)
-        #     if len(intersections) != 0:
-        #         goal = intersections[0]
-        #     else:
-        #         goal = next_wp
+            rospy.loginfo("....hello from intersection finding....")
 
-        print("goal....")
-        rospy.loginfo(goal)
+            this_distance = distance
+            while this_distance < self.look_ahead_dist:
+                if self.path_index + 1 < len(self.path):
+                    self.path_index += 1
+                point_to_consider = self.path[self.path_index]
+                this_distance = np.linalg.norm(point_to_consider[0:2] - pose2)
+
+            point1 = self.path[self.path_index - 1]
+            point2 = self.path[self.path_index]
+            intersections = getCircLineIntersect(point1, point2, pose2, self.look_ahead_dist)
+
+            # print("intersections")
+            # rospy.loginfo(intersections)
+
+            distance_from_goal0 = np.linalg.norm(intersections[0] - next_wp)
+            distance_from_goal1 = np.linalg.norm(intersections[1] - next_wp)
+
+            if distance_from_goal0 > distance_from_goal1:
+                goal = intersections[1]
+            else:
+                goal = intersections[0]
+
         return goal
 
     def publishPathVisualization(self, path):
@@ -549,7 +461,7 @@ class PathFollower(object):
             # TODO student's code
             #################
             self.sendVelocityCommand(0.0, 0.0)  # ???
-            # pose = np.array([0.0, 0.0, 0.0])
+            pose = np.array([0.0, 0.0, 0.0])
             rospy.logwarn('Empty path msg received.')
             self.action_server.set_succeeded(FollowPathResult(Pose2D(pose[0], pose[1], 0)), text='Goal reached.')
             return
@@ -575,7 +487,7 @@ class PathFollower(object):
                 except TransformException as ex:
                     rospy.logerr('Robot pose lookup failed: %s.', ex)
                     continue
-            ############### was indented one tab to right
+
             if self.path_msg is None:
                 rospy.logwarn('Path following was preempted. Leaving the control loop.')
                 self.sendVelocityCommand(0.0, 0.0)
@@ -583,8 +495,7 @@ class PathFollower(object):
 
             # TODO: set the local goal
             goal = self.getLookaheadPoint(pose)
-            ##############
-            # print("....testing....")
+
             # rospy.loginfo(goal)
 
             # publish visualization of lookahead point
@@ -596,91 +507,78 @@ class PathFollower(object):
                 rospy.logerr('First waypoint is too far away.')
                 angular_rate = 0.0
                 velocity = 0.0
-                ############
                 # self.started = True
                 # TODO student's code
                 self.action_server.set_aborted(FollowPathResult(Pose2D(pose[0], pose[1], 0)), text='Distance too high.')
 
             # Position displacement(direction and Euclidean distance)
             else:
-                # print("goal...........")
-                # rospy.loginfo(goal)
-                # print("pose...........")
-                # rospy.loginfo(pose)
-                # goal = np.expand_dims(goal, axis=-1)
-                # pose = np.expand_dims(pose, axis=-1)
-                # print(type(goal))
-                # print(type(pose))
+                if self.path_index + 1 > len(self.path) - 1:
+                    # rospy.loginfo("hello from goal reaching part..........")
+                    goal_dir = self.path[len(self.path) - 1][0:2] - pose[:2]
+                    goal_dist = np.linalg.norm(goal_dir)
+                    # rospy.loginfo("goal_dist")
+                    # rospy.loginfo(goal_dist)
+                    # TODO: react on situation when the robot has reached the goal ????
+                    if goal_dist <= self.goal_reached_dist:  # FIXME: replace by your code
+                        rospy.loginfo("       GOAL REACHED!!!      ")
+                        # TODO student's code
+                        self.sendVelocityCommand(0.0, 0.0)
+                        self.path_msg = None
+                        self.action_server.set_succeeded(FollowPathResult(Pose2D(pose[0], pose[1], 0)),
+                                                         text='Goal reached.')
 
-                goal_dir = goal - pose[:2]
-                goal_dist = np.linalg.norm(goal_dir)
+                # TODO: apply control law to produce control inputs
+                if self.front_range >= self.front_limit:
+                    rospy.loginfo("hello from control")
+                    velocity = 0.3
+                    # compute position in the lookahead dist with current robot pos
+                    distPos = pose[0:2] + self.look_ahead_dist * np.array([np.cos(pose[2]), np.sin(pose[2])])
+                    x = goal - pose[0:2]
+                    y = distPos - pose[0:2]
 
-                # TODO: react on situation when the robot has reached the goal ????
-                if goal_dist <= self.goal_reached_dist:  # FIXME: replace by your code
-                    print("       GOAL REACHED!!!      ")
+                    theta = np.arctan2(x[1], x[0])  # desired angle
+                    psi = np.arctan2(y[1], y[0])  # current angle
+
+                    # error difference
+                    error_n = theta - psi
+
+                    error_over = np.sign(-error_n) * (2 * np.pi - abs(error_n))
+                    if abs(error_n) > np.pi and np.sign(theta) != np.sign(psi):
+                        error_n = error_over
+
+                    # PID constants
+                    k_P = 8
+                    k_I = 3
+                    k_D = 1
+
+                    # updating angular rate
+                    angular_rate = k_P * error_n + k_I * self.integrator_value + k_D * (
+                            error_n - self.error_before) * self.control_freq
+
+                    if abs(angular_rate) < 2:
+                        self.integrator_value += error_n / self.control_freq
+
+                    # robot is stopped, integrate the error
+                    if np.clip(velocity - 0.05 * np.linalg.norm(angular_rate), 0., self.max_velocity) == 0:
+                        k_I = 0
+                        k_D = 0
+
+                    # recalculating velocity so the robot slows down during turns
+                    velocity = velocity - 0.05 * np.linalg.norm(angular_rate)
+
+                    # save error before and time before for the PID calculation
+                    self.time_before = t
+                    self.error_before = error_n
+
+                    velocity = np.clip(velocity, 0, self.max_velocity)
+                else:
+                    # if obstacle ahead or if path not found
+                    rospy.logwarn("Obstacle ahead!")
+                    # velocity = -self.max_velocity
                     velocity = 0
                     angular_rate = 0
-                    # TODO student's code
-                    pose = np.array([0.0, 0.0, 0.0])
-                    self.lock.release()
-                    self.action_server.set_succeeded(FollowPathResult(Pose2D(pose[0], pose[1], 0)),
-                                                     text='Goal reached.')
-
-                    self.preempt_control()
-
-
-                else:
-                    # TODO: apply control law to produce control inputs
-                    print("hello from control")
-                    if self.front_range >= self.front_limit:
-                        velocity = 0.3
-                        # compute position in the lookahead dist with current robot pos
-                        distPos = pose[0:2] + self.look_ahead_dist * np.array([np.cos(pose[2]), np.sin(pose[2])])
-                        x = goal - pose[0:2]
-                        y = distPos - pose[0:2]
-
-                        theta = np.arctan2(x[1], x[0])  # desired angle
-                        psi = np.arctan2(y[1], y[0])  # current angle
-
-                        # error difference
-                        error_n = theta - psi
-
-                        error_over = np.sign(-error_n) * (2 * np.pi - abs(error_n))
-                        if abs(error_n) > np.pi and np.sign(theta) != np.sign(psi):
-                            error_n = error_over
-
-                        # PID constants
-                        k_P = 8
-                        k_I = 3
-                        k_D = 1
-
-                        # updating angular rate
-                        angular_rate = k_P * error_n + k_I * self.integrator_value + k_D * (
-                                error_n - self.error_before) * self.control_freq
-
-                        if abs(angular_rate) < 2:
-                            self.integrator_value += error_n / self.control_freq
-
-                        # robot is stopped, integrate the error
-                        if np.clip(velocity - 0.05 * np.linalg.norm(angular_rate), 0., self.max_velocity) == 0:
-                            k_I = 0
-                            k_D = 0
-
-                        # recalculating velocity so the robot slows down during turns
-                        velocity = velocity - 0.05 * np.linalg.norm(angular_rate)
-
-                        # save error before and time before for the PID calculation
-                        self.time_before = t
-                        self.error_before = error_n
-
-                        velocity = np.clip(velocity, 0, self.max_velocity)
-                    else:
-                        # if obstacle ahead or if path not found
-                        rospy.logwarn("Obstacle ahead!")
-                        # velocity = -self.max_velocity
-                        velocity = 0
-                        angular_rate = 0
-                        self.path_msg = None
+                    self.path_msg = None
 
             # apply limits on angular rate and linear velocity
             angular_rate = np.clip(angular_rate, -self.max_angular_rate, self.max_angular_rate)
@@ -709,7 +607,7 @@ class PathFollower(object):
             print("hello from preempt_control")
             self.action_server.set_aborted(FollowPathResult(Pose2D(pose[0], pose[1], 0)), text='Control preempted.')
 
-            self.lock.acquire()
+            # self.lock.acquire()
 
         rospy.logwarn('Control preempted.')
 
