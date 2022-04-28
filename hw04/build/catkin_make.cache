@@ -1,2 +1,0 @@
-aro_frontier/aro_frontier:aro_frontier/aro_msgs
--DCATKIN_DEVEL_PREFIX=/home/vivek/Documents/ROS/hw04/devel -DCMAKE_INSTALL_PREFIX=/home/vivek/Documents/ROS/hw04/install -G Unix Makefiles
