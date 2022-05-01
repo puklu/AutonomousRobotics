@@ -1,0 +1,8 @@
+prefix=/home/vivek/Documents/ROS/sw01/devel/.private/aro_control
+
+Name: aro_control
+Description: Description of aro_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy message_runtime
